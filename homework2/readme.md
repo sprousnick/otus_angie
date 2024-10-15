@@ -60,7 +60,7 @@ Server: nginx/1.24.0 (Ubuntu)
 ......................................
 ```
 
-В браузере мы получаем стандартную проветственную страницу Nginx.
+В браузере мы получаем стандартную приветственную страницу Nginx.
 
 ![](img/nginx_welcome.png)
 
@@ -83,13 +83,13 @@ Angie version: Angie/1.7.0
 sudo systemctl disable angie
 ```
 
-## Перенеос значимых параметров конфигурации из Nginx в Angie
+## Перенос значимых параметров конфигурации из Nginx в Angie
 
 Вручную переносим из файла `/etc/nginx/nginx.conf` в файл `/etc/angie/angie.conf` следующие параметры:
 
 - на корневом уровне: 
   - заменяем `user angie;` на `user www-data;`
-  - добавляем загрузку модулей brotli"
+  - добавляем загрузку модулей brotli
     ```bash
     load_module modules/ngx_http_brotli_filter_module.so;
     load_module modules/ngx_http_brotli_static_module.so;
@@ -117,7 +117,7 @@ sudo systemctl disable angie
 Далее требуется в настройках сайтов заменить все вхождения `/nginx/` на `/angie/`, для чего в каталоге `sites-available` выполняем команду:
 
 ```bash
-grep -lr -e 'nginx' . | xargs sed -i 's,/nginx/,/angie/,g'
+grep -lr -e '/nginx/' . | xargs sed -i 's,/nginx/,/angie/,g'
 ```
 
 Также необходимо изменить символические ссылки в каталоге `sites-enabled`. 
@@ -128,7 +128,7 @@ total 0
 lrwxrwxrwx 1 root root 34 сен 20  2023 default -> /etc/nginx/sites-available/default
 ```
 
-В случае небольшого количества сайтов это можно сделать и вручную, но мы сделам скриптом. Создадим в домашнем каталоге файл `script.sh` следующей командой:
+В случае небольшого количества сайтов это можно сделать и вручную, но мы сделаем это скриптом. Создадим в домашнем каталоге файл `script.sh` следующей командой:
 
 ```bash
 find /etc/angie/sites-enabled/* -type l -printf 'ln -nsf "$(readlink "%p" | sed s!/etc/nginx/sites-available!/etc/angie/sites-available!)" "$(echo "%p" | sed s!/etc/nginx/sites-available!/etc/angie/sites-available!)"\n' > script.sh
