@@ -37,6 +37,12 @@ sudo docker rm -f angie
 sudo docker run --name angie -v /var/www/html:/usr/share/angie/html:ro -v /home/glebka/angie:/etc/angie:ro -p 88:80 -d docker.angie.software/angie:latest
 ```
 
+upd: Желательно указать конкретную версию. Это гарантирует, что наш проект будет работать с проверенной и стабильной версией зависимости и помогает избежать неожиданных изменений, которые могут быть внесены в новые версии.
+
+```bash
+sudo docker run --name angie -v /var/www/html:/usr/share/angie/html:ro -v /home/glebka/angie:/etc/angie:ro -p 88:80 -d docker.angie.software/angie:1.7.0-alpine
+```
+
 Создадим файл `/var/www/html/index.html` следующего содержания:
 
 ```html
