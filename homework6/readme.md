@@ -164,7 +164,7 @@ add_header Alt-Svc 'h3-29=":443"';
 
 ## Проверка
 
-Тест SSL Labs показал положительный результат:
+[Тест SSL Labs](https://www.ssllabs.com/ssltest/) показал положительный результат:
 
 ![](img/ssl-lsbs.png)
 
@@ -173,3 +173,10 @@ add_header Alt-Svc 'h3-29=":443"';
 - сайт работает только с современными браузерами с поддерждкой SNI (ну и хорошо);
 - на DNS нет CAA-записи (надо сделать что ли...);
 - и непонятный пункт `Session resumption (caching): No (IDs assigned but not accepted)` (надеюсь, ничего серьёзного).
+
+## Работа над ошибками
+
+1. Изменены  редиректы `return 302` -> `return 301`.
+2. Заголовки `x-quic: 'h3'` и `Alt-Svc: 'h3-29=":443"'` действительно не нужны;
+3. Согласно [рекомендациям Яндекса](https://habr.com/ru/companies/yandex/articles/249771/) `ssl_session_timeout 1d` -> `ssl_session_timeout 28h;`
+4. Для нормальной работы Session resumption (caching) объявление `ssl_session_cache` надо вынести из блока `server`. Таким образом включение сниппета `ssl-intermediate.conf` переехало из `otus-angie.conf` в `angie.conf`.
