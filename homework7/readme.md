@@ -60,7 +60,7 @@ server {
 
 Полный результат представлен в файле [otus-angie-rr.conf](otus-angie-rr.conf).
 
-Заходим по адресу [otus-angie.sprousnick.ru](otus-angie.sprousnick.ru) и убеждаемся в последовательной смене цветов при каждом запросе. 
+Заходим по адресу [otus-angie.sprousnick.ru](https://otus-angie.sprousnick.ru) и убеждаемся в последовательной смене цветов при каждом запросе. 
 
 Также последовательный рост счётчика запросов можно увидеть в консоли Angie:
 
@@ -80,11 +80,11 @@ hash $scheme$request_uri;
 
 Убедимся, что мы попадаем на разные бэкенды в зависимости от строки запроса:
 
-- https://otus-angie.sprousnick.ru/ - white
-- https://otus-angie.sprousnick.ru/about - blue
-- https://otus-angie.sprousnick.ru/history - white
-- https://otus-angie.sprousnick.ru/news - cyan
-- https://otus-angie.sprousnick.ru/page-1 - green
+- / - white
+- /about - blue
+- /history - white
+- /news - cyan
+- /page-1 - green
 
 ### Произвольная балансировка (random)
 
