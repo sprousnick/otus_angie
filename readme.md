@@ -8,3 +8,4 @@
 4. [Запуск сайта с CMS WordPress](homework4/readme.md)
 5. [Оптимизация WordPress](homework5/readme.md)
 6. [Настройка HTTPS](homework6/readme.md)
+7. [Балансировка HTTP](homework7/readme.md)
