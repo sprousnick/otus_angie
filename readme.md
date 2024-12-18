@@ -9,3 +9,4 @@
 5. [Оптимизация WordPress](homework5/readme.md)
 6. [Настройка HTTPS](homework6/readme.md)
 7. [Балансировка HTTP](homework7/readme.md)
+8. [Защита от DoS-атак, ограничение доступа](homework8/readme.md)
